@@ -33,5 +33,40 @@ button {
     background: rgb(51, 0, 111);
     color: white;
     border-radius: 10%;
-    border: 5px solid rgb(145, 123, 76);
+    border: 3px solid rgb(145, 123, 76);
+}
+
+section {
+    position: absolute;
+    top: 35%;
+    left: 45%;
+}
+
+.container {
+    display: flexbox;
+    justify-content: center;
+    background: rgb(145, 123, 76);
+    border-radius: 10px;
+    padding: 5px;
+    box-shadow: 0 0 10px 2px;
+}
+
+#set-container {
+    text-align: center;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+#answer-choices {
+    display: grid;
+}
+
+.btn {
+    margin: 7px;
 }

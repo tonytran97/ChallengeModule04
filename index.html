@@ -16,11 +16,13 @@
         <li>View previous attempts</li>
         </div>
         <div>
-        <li>"insert timer here"</li>
+        <li id="timer"></li>
       </div>
       </ul>
     </header>
-    <main>
+    
+    <main class="container">
+      <div id="main">
       <img src="https://pcc.uw.edu/wp-content/themes/coenv-pcc/assets/img/icons/logo-1200x1200.png" alt="University of Washington logo">
       <h1>Coding Quiz Challenge</h1>
       <h2>Welcome to my Interactive Quiz!</h2>
@@ -29,10 +31,25 @@ Try to answer the following code-related questions within the time limit.
     Keep in mind that incorrect answers will penalize your score/time by 10 seconds!
   (no pressure)
     </pre>
-      <div>
+      <div id="button">
         <button>Start Quiz</button>
       </div>
+    </div>
+     <section class="hidden">
+      <div id="set-container">
+        <div id="question">question</div>
+        <div id="answer-choices">
+        <button class="btn">1</button>  
+        <button class="btn">2</button>
+        <button class="btn">3</button>
+        <button class="btn">4</button>
+        </div>
+      </div>
+    </section>
     </main>
+
+   
+
     <script src="assets/javascript.js"></script>
   </body>
 </html>
