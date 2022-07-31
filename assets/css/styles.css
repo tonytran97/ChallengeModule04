@@ -1,7 +1,6 @@
 /* universal styles */
 * {
     padding: 5px;
-    background: rgb(248, 240, 227);
 }
 
 /* displays the scores and the timer on opposite ends of the page */
@@ -13,6 +12,11 @@ ul {
 main {
     text-align: center;
     margin-top: 9%;
+}
+
+#main,
+#set-container {
+    background: rgb(248, 240, 227);
 }
 
 /* UW logo */
@@ -37,9 +41,9 @@ button {
 }
 
 section {
-    position: absolute;
-    top: 35%;
-    left: 45%;
+    position: relative;
+    /* top: 35%;
+    left: 45%; */
 }
 
 .container {
@@ -56,11 +60,11 @@ section {
 }
 
 .hidden {
-    visibility: hidden;
+    display: none;
 }
 
 .hide {
-    visibility: hidden;
+    display: none;
 }
 
 #answer-choices {
@@ -70,3 +74,7 @@ section {
 .btn {
     margin: 7px;
 }
+
+/* .btn:hover {
+    transform: scale(1.5);
+} */
