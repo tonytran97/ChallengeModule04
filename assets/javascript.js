@@ -1,6 +1,6 @@
 const startButton = document.getElementById("quizButton");
 var timer = document.getElementById("timer");
-var secondsLeft = 300;
+var secondsLeft = 100;
 var hidden = document.getElementById("main");
 var questionSetContainer = document.querySelector("section");
 var questionEl = document.getElementById("question");
@@ -12,6 +12,7 @@ var answerButtons = document.getElementById("answer-choices");
 var preClear = document.querySelector("pre");
 var h1 = document.querySelector("h1");
 var h2 = document.querySelector("h2");
+var recordScore = document.getElementById("score");
 
 startButton.addEventListener("click", startGame);
 
@@ -43,13 +44,16 @@ var questionSeries = [
     }
 ];
 
+var gameEnd = false;
+
 function startGame(event) {
     event.preventDefault();
     var timeInterval = setInterval(function () {
         secondsLeft--;
         timer.innerHTML = "Time: " + secondsLeft;
-        if (secondsLeft === 0) {
+        if (secondsLeft === 0 || gameEnd == true) {
             clearInterval(timeInterval);
+            return;
         }
     }, 1000);
     hidden.classList.add("hide");
@@ -93,6 +97,7 @@ function answerChoice(event) {
         nextQuestion();
     } else {
         gameOver();
+        gameEnd = true;
     }
 }
 
@@ -108,16 +113,30 @@ function nextQuestion() {
     option4.addEventListener("click", answerChoice);
 }
 
+initials = document.getElementById("initials");
+
 function gameOver() {
     questionSetContainer.classList.add("hidden");
     hidden.classList.remove("hide");
-    preClear.classList.add("hidden");
-    h1.remove();
-    h2.remove();
-    startButton.remove();
-    var gameOverBox = document.createElement("div");
-    var gameOverText = document.createTextNode("GameOver!");
-    hidden.appendChild(gameOverBox);
-    gameOverBox.appendChild(gameOverText);
-    gameOverBox.style.fontSize = "5vh";
+    recordScore.classList.remove("hide");
+    h1.innerHTML = "GameOver!";
+    h2.innerHTML = "";
+    preClear.innerHTML = "";
+    startButton.innerHTML = "";
+    var finalScore = document.createElement("p");
+    timer.classList.add("hidden");
+    gameEndScore = timer.innerHTML;
+    var finalScoreText = document.createTextNode(gameEndScore);
+    finalScore.appendChild(finalScoreText);
+    h1.appendChild(finalScore);
+    submitScore = document.getElementById("submitScore");
+    submitScore.addEventListener("click", function (event) {
+        event.preventDefault();
+        var input = initials.value;
+        console.log(input);
+        localStorage.setItem("points", input);
+        var storedPoints = localStorage.getItem("points");
+        console.log(storedPoints);
+    })
+
 }
