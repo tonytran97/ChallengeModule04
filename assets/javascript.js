@@ -13,7 +13,8 @@ var preClear = document.querySelector("pre");
 var h1 = document.querySelector("h1");
 var h2 = document.querySelector("h2");
 var recordScore = document.getElementById("score");
-
+var bonus = 5;
+var penalty = 10;
 startButton.addEventListener("click", startGame);
 
 var questionSeries = [
@@ -87,9 +88,9 @@ function answerChoice(event) {
     console.log(currentQuestion);
     if (questionSeries[currentQuestion].correct === selectedAnswer) {
 
-        console.log("+10");
+        secondsLeft = secondsLeft + bonus;
     } else {
-        console.log("-10");
+        secondsLeft = secondsLeft - penalty;
     }
     resetButtons();
     currentQuestion++;
