@@ -13,10 +13,14 @@ var preClear = document.querySelector("pre");
 var h1 = document.querySelector("h1");
 var h2 = document.querySelector("h2");
 var recordScore = document.getElementById("score");
-var bonus = 5;
-var penalty = 10;
+var reply = document.getElementById("reply");
+var globalscoreStore = 0;
+
+// starts game on click of the button
 startButton.addEventListener("click", startGame);
 
+
+// question and answer bank to pull from
 var questionSeries = [
     {
         question: "Commonly used data types DO Not include: ",
@@ -46,6 +50,8 @@ var questionSeries = [
 ];
 
 var gameEnd = false;
+var bonus = 5;
+var penalty = 10;
 
 function startGame(event) {
     event.preventDefault();
@@ -63,6 +69,7 @@ function startGame(event) {
     showQuestion();
 }
 
+// displays the first set of questions/answers
 function showQuestion() {
     questionEl.innerHTML = questionSeries[currentQuestion].question;
     option1.innerHTML = questionSeries[currentQuestion].choices[0];
@@ -75,6 +82,7 @@ function showQuestion() {
     option4.addEventListener("click", answerChoice);
 }
 
+// reset to allow loadup of the next set of questions
 function resetButtons() {
     questionEl.innerHTML = "";
     option1.innerHTML = "";
@@ -83,14 +91,17 @@ function resetButtons() {
     option4.innerHTML = "";
 }
 
+// checks the answer choice and gives the appropriate bonus or penalty and loops to next set of questions/answers
 function answerChoice(event) {
     var selectedAnswer = event.target.innerHTML;
     console.log(currentQuestion);
     if (questionSeries[currentQuestion].correct === selectedAnswer) {
 
         secondsLeft = secondsLeft + bonus;
+        reply.innerHTML = "correct, bonus has been added";
     } else {
         secondsLeft = secondsLeft - penalty;
+        reply.innerHTML = "incorrect, penalty has been applied"
     }
     resetButtons();
     currentQuestion++;
@@ -102,6 +113,7 @@ function answerChoice(event) {
     }
 }
 
+// allows for the loop through of questions
 function nextQuestion() {
     questionEl.innerHTML = questionSeries[currentQuestion].question;
     option1.innerHTML = questionSeries[currentQuestion].choices[0];
@@ -131,13 +143,31 @@ function gameOver() {
     finalScore.appendChild(finalScoreText);
     h1.appendChild(finalScore);
     submitScore = document.getElementById("submitScore");
+    storedScore();
+}
+
+var myStorage = [];
+
+
+// failed attempts at storing data into localStorage 
+function storedScore() {
     submitScore.addEventListener("click", function (event) {
         event.preventDefault();
         var input = initials.value;
-        console.log(input);
+        // console.log(input);
+        myStorage = localStorage.getItem("previousScores");
         localStorage.setItem("points", input);
         var storedPoints = localStorage.getItem("points");
-        console.log(storedPoints);
+        // console.log(storedPoints);
+        h1.innerHTML = "List of scores:";
+        gameEnd.innerHTML = "";
+        recordScore.classList.add("hidden");
+        preClear.innerHTML = myStorage;
+        preClear.innerHTML = storedPoints + " - " + gameEndScore;
+        localStorage.setItem("previousScores", preClear.innerHTML);
+        // myStorage = storedPoints + " - " + gameEndScore;
     })
-
 }
+
+// localStorage.setItem("savedScores", myStorage);
+// localStorage.getItem("savedScores");

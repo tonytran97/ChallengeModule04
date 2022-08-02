@@ -42,8 +42,6 @@ button {
 
 section {
     position: relative;
-    /* top: 35%;
-    left: 45%; */
 }
 
 .container {
@@ -59,6 +57,7 @@ section {
     text-align: center;
 }
 
+/* hidden display to hide certain elements during interactivity */
 .hidden {
     display: none;
 }
@@ -74,7 +73,3 @@ section {
 .btn {
     margin: 7px;
 }
-
-/* .btn:hover {
-    transform: scale(1.5);
-} */
