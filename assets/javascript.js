@@ -58,8 +58,9 @@ function startGame(event) {
     var timeInterval = setInterval(function () {
         secondsLeft--;
         timer.innerHTML = "Time: " + secondsLeft;
-        if (secondsLeft === 0 || gameEnd == true) {
+        if (secondsLeft <= 0 || gameEnd == true) {
             clearInterval(timeInterval);
+            gameOver();
             return;
         }
     }, 1000);
